@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Administration municipale</title><link rel="stylesheet" href="styles.css"></head>
+<body class="admin-body">
+<div class="admin-app">
+  <aside class="admin-side">
+    <div class="admin-logo"><div class="mark" data-logo-text>F</div><div><strong data-app-name>Ferrières & Vous</strong><small>Administration municipale</small></div></div>
+    <div class="admin-group">Pilotage</div>
+    <nav class="admin-nav">
+      <button class="active" data-admin-page="dashboard"><span class="ico">◩</span>Tableau de bord</button>
+      <button data-admin-page="publish"><span class="ico">✦</span>Publications</button>
+      <button><span class="ico">⚠</span>Alertes</button>
+      <button><span class="ico">⌖</span>Signalements</button>
+      <button><span class="ico">▣</span>Agenda</button>
+    </nav>
+    <div class="admin-group">Contenus</div>
+    <nav class="admin-nav">
+      <button><span class="ico">🚧</span>Travaux</button>
+      <button><span class="ico">🏫</span>Scolaire</button>
+      <button><span class="ico">🌿</span>Patrimoine</button>
+      <button><span class="ico">☰</span>Annuaire</button>
+    </nav>
+    <div class="admin-group">Configuration</div>
+    <nav class="admin-nav">
+      <button data-admin-page="settings"><span class="ico">⚙</span>Paramètres</button>
+      <button><span class="ico">👥</span>Utilisateurs</button>
+      <button><span class="ico">⌁</span>RSS & connexions</button>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-top">
+      <div><small data-city>Ferrières-en-Brie</small><h1 id="adminTitle">Tableau de bord</h1></div>
+      <div class="admin-actions"><button class="icon-btn">🔔</button><button class="icon-btn" onclick="location.href='index.html'">📱</button><div class="admin-avatar">AM</div></div>
+    </div>
+    <div class="responsive-note">Version mobile admin : les fonctions essentielles restent accessibles sur téléphone. La gestion complète est optimisée pour PC/tablette.</div>
+
+    <section class="admin-page active" id="admin-dashboard">
+      <div class="kpis">
+        <div class="kpi"><small>Signalements ouverts</small><strong>24</strong></div>
+        <div class="kpi"><small>À qualifier</small><strong>6</strong></div>
+        <div class="kpi"><small>Délai moyen</small><strong>3,2 j</strong></div>
+        <div class="kpi"><small>Ouvertures semaine</small><strong>1 482</strong></div>
+      </div>
+      <div class="admin-grid">
+        <div class="panel">
+          <div class="panel-head"><div><h3>Demandes récentes</h3><span>Traitement en cours</span></div><button class="btn ghost">Voir la carte</button></div>
+          <div class="list-row"><div class="row-icon">💡</div><div><b>Lampadaire éteint</b><small>#FE-2048 · rue du Général-de-Gaulle</small></div><span class="status">À qualifier</span></div>
+          <div class="list-row"><div class="row-icon">🚧</div><div><b>Nid-de-poule</b><small>#FE-2043 · affecté voirie</small></div><span class="status">En cours</span></div>
+          <div class="list-row"><div class="row-icon">🌿</div><div><b>Branche dangereuse</b><small>#FE-2039 · intervention planifiée</small></div><span class="status">Planifié</span></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Actions rapides</h3><span>Sans intervention technique</span></div></div>
+          <button class="btn primary" style="width:100%;margin-bottom:9px" onclick="openAdmin('publish')">+ Nouvelle publication</button>
+          <button class="btn secondary" style="width:100%;margin-bottom:9px">Créer une alerte</button>
+          <button class="btn secondary" style="width:100%;margin-bottom:9px">Ajouter un événement</button>
+          <button class="btn ghost" style="width:100%">Modifier les horaires</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="admin-page" id="admin-publish">
+      <div class="editor-grid">
+        <div class="editor-card">
+          <div class="panel-head"><div><h3>Nouvelle publication</h3><span>Une seule saisie, plusieurs canaux</span></div></div>
+          <div class="form-grid">
+            <div class="form-field"><label>Titre</label><input id="pubTitle" value="Fermeture exceptionnelle de la mairie"></div>
+            <div class="form-field"><label>Catégorie</label><select><option>Information municipale</option><option>Travaux</option><option>Scolaire</option><option>Culture</option></select></div>
+            <div class="form-field full"><label>Contenu</label><textarea id="pubText">La mairie fermera exceptionnellement ses portes vendredi à 16h30.</textarea></div>
+            <div class="form-field"><label>Publication</label><select><option>Publier maintenant</option><option>Programmer</option></select></div>
+            <div class="form-field"><label>Date d'expiration</label><input type="date"></div>
+            <div class="form-field full"><label>Image</label><input type="file" accept="image/*"></div>
+          </div>
+          <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:15px"><button class="btn secondary" onclick="toast('Brouillon enregistré')">Brouillon</button><button class="btn primary" onclick="toast('Publication envoyée')">Publier</button></div>
+        </div>
+        <div class="editor-card">
+          <h3 style="margin-top:0">Diffusion</h3>
+          <div class="channel"><span>Application</span><button class="switch on"></button></div>
+          <div class="channel"><span>Notification push</span><button class="switch on"></button></div>
+          <div class="channel"><span>Site municipal</span><button class="switch"></button></div>
+          <div class="channel"><span>Facebook</span><button class="switch"></button></div>
+          <div class="channel"><span>Instagram</span><button class="switch"></button></div>
+          <div class="phone-preview">
+            <div class="phone-preview-inner">
+              <div class="preview-hero"><small data-app-name>Ferrières & Vous</small><h3 id="previewTitle">Fermeture exceptionnelle de la mairie</h3><p id="previewText">La mairie fermera exceptionnellement ses portes vendredi à 16h30.</p></div>
+              <div class="preview-content"><div class="block"></div><div class="block"></div><div class="block short"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="admin-page" id="admin-settings">
+      <div class="settings-grid">
+        <div class="editor-card">
+          <div class="panel-head"><div><h3>Identité de la commune</h3><span>Tout est configurable sans code</span></div></div>
+          <div class="form-grid">
+            <div class="form-field"><label>Nom de l'application</label><input id="setAppName"></div>
+            <div class="form-field"><label>Nom de la commune</label><input id="setCity"></div>
+            <div class="form-field"><label>Nom court</label><input id="setShort"></div>
+            <div class="form-field"><label>Lettre / monogramme</label><input id="setLogo"></div>
+            <div class="form-field full"><label>Slogan</label><input id="setTagline"></div>
+            <div class="form-field full color-row"><div><label>Couleur principale</label><input id="setPrimary" type="text"></div><input id="setPrimaryPicker" type="color"></div>
+            <div class="form-field full color-row"><div><label>Couleur secondaire</label><input id="setSecondary" type="text"></div><input id="setSecondaryPicker" type="color"></div>
+            <div class="form-field full color-row"><div><label>Couleur d'accent</label><input id="setAccent" type="text"></div><input id="setAccentPicker" type="color"></div>
+          </div>
+          <button class="btn primary" style="margin-top:14px" onclick="saveDemoConfig()">Enregistrer la configuration</button>
+        </div>
+        <div>
+          <div class="brand-preview"><span class="chip">Aperçu identité</span><h2 id="brandPreviewName">Ferrières & Vous</h2><p id="brandPreviewTag">La ville, simplement.</p></div>
+          <div class="editor-card" style="margin-top:14px">
+            <div class="panel-head"><div><h3>Modules actifs</h3><span>Activables commune par commune</span></div></div>
+            <div class="module-grid" id="moduleGrid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="common.js"></script>
+<script>
+let CFG;
+loadConfig().then(c=>{CFG=c;applyConfig(c);initSettings(c)});
+function openAdmin(id){
+  document.querySelectorAll('.admin-page').forEach(p=>p.classList.toggle('active',p.id==='admin-'+id));
+  document.querySelectorAll('[data-admin-page]').forEach(b=>b.classList.toggle('active',b.dataset.adminPage===id));
+  document.getElementById('adminTitle').textContent={dashboard:'Tableau de bord',publish:'Publications',settings:'Paramètres'}[id]||'Administration';
+}
+document.querySelectorAll('[data-admin-page]').forEach(b=>b.addEventListener('click',()=>openAdmin(b.dataset.adminPage)));
+document.querySelectorAll('.switch').forEach(s=>s.addEventListener('click',()=>s.classList.toggle('on')));
+document.getElementById('pubTitle').addEventListener('input',e=>document.getElementById('previewTitle').textContent=e.target.value);
+document.getElementById('pubText').addEventListener('input',e=>document.getElementById('previewText').textContent=e.target.value);
+function initSettings(c){
+  const m=c.municipality,t=m.theme;
+  setAppName.value=m.appName;setCity.value=m.name;setShort.value=m.shortName;setLogo.value=m.logoText;setTagline.value=m.tagline;
+  setPrimary.value=t.primary;setSecondary.value=t.secondary;setAccent.value=t.accent;
+  setPrimaryPicker.value=t.primary;setSecondaryPicker.value=t.secondary;setAccentPicker.value=t.accent;
+  brandPreviewName.textContent=m.appName;brandPreviewTag.textContent=m.tagline;
+  const labels={news:'Actualités',alerts:'Alertes',agenda:'Agenda',reports:'Signalements',works:'Travaux',school:'Scolaire',services:'Services',heritage:'Patrimoine',directory:'Annuaire',legal:'Affichage légal',rss:'RSS',commerce:'Commerces',mobility:'Mobilité',consultations:'Consultations',carpool:'Covoiturage'};
+  moduleGrid.innerHTML='';
+  Object.entries(c.modules).forEach(([k,v])=>{
+    const d=document.createElement('div');d.className='module';
+    d.innerHTML=`<b>${labels[k]||k}</b><small>${v?'Actif':'Inactif'}</small><button class="switch ${v?'on':''}" style="margin-top:9px" data-module="${k}"></button>`;
+    moduleGrid.appendChild(d);
+  });
+  moduleGrid.querySelectorAll('.switch').forEach(s=>s.addEventListener('click',()=>{s.classList.toggle('on');s.parentElement.querySelector('small').textContent=s.classList.contains('on')?'Actif':'Inactif'}));
+  [setPrimaryPicker,setSecondaryPicker,setAccentPicker].forEach((p,i)=>p.addEventListener('input',()=>{
+    [setPrimary,setSecondary,setAccent][i].value=p.value; updatePreview();
+  }));
+  [setAppName,setTagline,setPrimary,setSecondary,setAccent].forEach(el=>el.addEventListener('input',updatePreview));
+}
+function updatePreview(){
+  document.documentElement.style.setProperty('--primary',setPrimary.value);
+  document.documentElement.style.setProperty('--secondary',setSecondary.value);
+  document.documentElement.style.setProperty('--accent',setAccent.value);
+  brandPreviewName.textContent=setAppName.value;brandPreviewTag.textContent=setTagline.value;
+}
+function saveDemoConfig(){
+  applyConfig({municipality:{appName:setAppName.value,name:setCity.value,shortName:setShort.value,tagline:setTagline.value,logoText:setLogo.value,theme:{primary:setPrimary.value,secondary:setSecondary.value,accent:setAccent.value}}});
+  toast('Configuration enregistrée dans le prototype');
+}
+</script>
+</body></html>
