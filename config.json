@@ -1,0 +1,45 @@
+{
+  "product": {
+    "engineName": "Civic Platform",
+    "version": "0.3-prototype"
+  },
+  "municipality": {
+    "id": "ferrieres-en-brie",
+    "name": "Ferrières-en-Brie",
+    "shortName": "Ferrières",
+    "appName": "Ferrières & Vous",
+    "tagline": "La ville, simplement.",
+    "department": "Seine-et-Marne",
+    "postalCode": "77164",
+    "address": "Place Auguste Trézy, 77164 Ferrières-en-Brie",
+    "phone": "01 64 66 31 14",
+    "email": "mairie@ferrieres-en-brie.fr",
+    "website": "https://www.ferrieres-en-brie.fr",
+    "logoText": "F",
+    "theme": {
+      "primary": "#143c34",
+      "secondary": "#2c725f",
+      "accent": "#d6b06a",
+      "background": "#f1f4f2",
+      "surface": "#ffffff",
+      "danger": "#d8584f"
+    }
+  },
+  "modules": {
+    "news": true,
+    "alerts": true,
+    "agenda": true,
+    "reports": true,
+    "works": true,
+    "school": true,
+    "services": true,
+    "heritage": true,
+    "directory": true,
+    "legal": true,
+    "rss": true,
+    "commerce": false,
+    "mobility": false,
+    "consultations": false,
+    "carpool": false
+  }
+}
