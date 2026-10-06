@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Application citoyenne</title><link rel="stylesheet" href="styles.css">
+</head>
+<body class="citizen-body">
+<div class="phone-stage">
+  <div class="phone">
+    <div class="statusbar"><span>21:42</span><span>5G ▰▰▰ 89%</span></div>
+    <div class="citizen-scroll">
+      <section class="screen active" id="screen-home">
+        <div class="mobile-head">
+          <div class="mobile-brand"><div class="mark" data-logo-text>F</div><div><b data-app-name>Ferrières & Vous</b><small data-city>Ferrières-en-Brie</small></div></div>
+          <button class="icon-btn">🔔</button>
+        </div>
+        <div class="mobile-hero">
+          <div class="weather"><span>● Ville en direct</span><span>16° · ☁</span></div>
+          <h1><span data-short-city>Ferrières</span>,<br>simplement.</h1>
+          <p>Actualités, événements, services et signalements réunis dans une seule application.</p>
+          <div class="hero-actions">
+            <button class="btn light" onclick="openScreen('report')">Signaler</button>
+            <button class="btn glass" onclick="openScreen('agenda')">Agenda</button>
+          </div>
+        </div>
+        <div class="alert-strip"><div class="aicon">⚠️</div><div><b>Travaux rue du Château</b><small>Circulation alternée jusqu’à vendredi 18h</small></div><span>›</span></div>
+        <div class="section-title"><h2>Vos essentiels</h2><button>Personnaliser</button></div>
+        <div class="shortcuts">
+          <button class="shortcut" onclick="openScreen('report')"><div class="sicon">📍</div><span>Signaler</span></button>
+          <button class="shortcut" onclick="openScreen('agenda')"><div class="sicon">📅</div><span>Agenda</span></button>
+          <button class="shortcut" onclick="openScreen('services')"><div class="sicon">🏛️</div><span>Services</span></button>
+          <button class="shortcut"><div class="sicon">🌿</div><span>Découvrir</span></button>
+        </div>
+        <div class="section-title"><h2>À la une</h2><button>Tout voir</button></div>
+        <div class="story"><div class="pic">🌳</div><div><div class="meta">ENVIRONNEMENT · AUJOURD’HUI</div><b>Plantation participative au parc municipal</b><p>Une matinée ouverte à tous samedi à partir de 9h30.</p></div></div>
+        <div class="section-title"><h2>Prochainement</h2><button>Agenda</button></div>
+        <div class="story"><div class="pic">12</div><div><div class="meta">12 OCTOBRE · 18:30</div><b>Réunion publique</b><p>Salle municipale · entrée libre</p></div></div>
+      </section>
+
+      <section class="screen" id="screen-report">
+        <div class="mobile-page">
+          <div class="mobile-page-head"><h2>Signaler un problème</h2><p>Quelques secondes suffisent.</p></div>
+          <div class="mobile-card">
+            <div class="mobile-field"><label>Catégorie</label><select><option>Éclairage public</option><option>Voirie</option><option>Propreté</option><option>Espaces verts</option><option>Accessibilité</option></select></div>
+            <div class="mobile-field"><label>Description</label><textarea placeholder="Décrivez simplement le problème…"></textarea></div>
+            <div class="mobile-field"><label>Localisation</label><div class="fake-map"></div></div>
+            <div class="mobile-field"><label>Photo</label><input type="file" accept="image/*"></div>
+            <button class="btn primary" style="width:100%" onclick="submitReport()">Envoyer le signalement</button>
+          </div>
+          <div class="mobile-card hidden" id="report-success">
+            <span class="chip light">Signalement #FE-2048</span>
+            <h3>Demande transmise</h3><p class="muted" style="font-size:.76rem">Vous serez informé à chaque changement de statut.</p>
+            <div class="track"><span class="done">✓ Reçu</span><span class="now">Qualification</span><span>Affecté</span><span>En cours</span><span>Résolu</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-agenda">
+        <div class="mobile-page">
+          <div class="mobile-page-head"><h2>Agenda</h2><p>Tout ce qui se passe à <span data-short-city>Ferrières</span>.</p></div>
+          <div class="mobile-card"><b>12 octobre · 18h30</b><p class="muted" style="font-size:.74rem">Réunion publique · Salle municipale</p></div>
+          <div class="mobile-card"><b>17 octobre · 10h00</b><p class="muted" style="font-size:.74rem">Marché des producteurs · Place de la mairie</p></div>
+          <div class="mobile-card"><b>24 octobre · 14h00</b><p class="muted" style="font-size:.74rem">Balade patrimoine · Centre-ville</p></div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-services">
+        <div class="mobile-page">
+          <div class="mobile-page-head"><h2>Services</h2><p>Les informations utiles du quotidien.</p></div>
+          <div class="mobile-card"><b>🏛️ Mairie</b><p class="muted" style="font-size:.74rem">Horaires, contacts et démarches</p></div>
+          <div class="mobile-card"><b>🏫 Scolaire</b><p class="muted" style="font-size:.74rem">Écoles, cantine et périscolaire</p></div>
+          <div class="mobile-card"><b>🚧 Travaux</b><p class="muted" style="font-size:.74rem">Chantiers, circulation et déviations</p></div>
+          <div class="mobile-card"><b>📄 Affichage légal</b><p class="muted" style="font-size:.74rem">Arrêtés, délibérations et documents</p></div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-profile">
+        <div class="mobile-page">
+          <div class="mobile-page-head"><h2>Mon espace</h2><p>Préférences, notifications et accessibilité.</p></div>
+          <div class="mobile-card"><b>🔔 Mes notifications</b><p class="muted" style="font-size:.74rem">Choisir les catégories reçues</p></div>
+          <div class="mobile-card"><b>♿ Accessibilité</b><p class="muted" style="font-size:.74rem">Texte, contraste, animations</p></div>
+          <div class="mobile-card"><b>📍 Mes signalements</b><p class="muted" style="font-size:.74rem">Suivre mes demandes en cours</p></div>
+        </div>
+      </section>
+    </div>
+    <nav class="bottom-nav">
+      <button class="active" data-screen="home"><span class="nicon">⌂</span>Accueil</button>
+      <button data-screen="report"><span class="nicon">⌖</span>Signaler</button>
+      <button data-screen="agenda"><span class="nicon">▣</span>Agenda</button>
+      <button data-screen="services"><span class="nicon">◫</span>Services</button>
+      <button data-screen="profile"><span class="nicon">☺</span>Profil</button>
+    </nav>
+  </div>
+</div>
+<script src="common.js"></script>
+<script>
+let CFG;
+loadConfig().then(c=>{CFG=c;applyConfig(c)});
+function openScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id==='screen-'+id));
+  document.querySelectorAll('[data-screen]').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
+  document.querySelector('.citizen-scroll').scrollTop=0;
+}
+document.querySelectorAll('[data-screen]').forEach(b=>b.addEventListener('click',()=>openScreen(b.dataset.screen)));
+function submitReport(){document.getElementById('report-success').classList.remove('hidden');toast('Signalement envoyé')}
+</script>
+</body></html>
